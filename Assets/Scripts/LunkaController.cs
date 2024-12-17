@@ -6,15 +6,13 @@ using UnityEngine;
 [SelectionBase]
 public class LunkaController : MonoBehaviour
 {
-    [SerializeField] private Transform _camera;
     [SerializeField] private LayerMask _mask;
-    [SerializeField] private bool _isMove;
+    [SerializeField] private Transform _camera;
     [SerializeField] private Transform _lunka;
     [SerializeField] private Transform _paplavok;
+    [SerializeField] private bool _isMove;
     [SerializeField] private bool _isFish;
     [SerializeField] private Animator _animator;
-
-    [SerializeField] private DnoScropt _dno;
 
     private CancellationTokenSource _cancellationTokenSource;
     private CancellationToken _cancellationToken;
@@ -42,10 +40,17 @@ public class LunkaController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Метод кнопки для включения перемещения
+    /// </summary>
     public void EnablePoint()
     {
         _isMove = true;
     }
+
+    /// <summary>
+    /// Метод кнопки для выключения перемещения
+    /// </summary>
     public void DisablePoint()
     {
         _isMove = false;
@@ -62,7 +67,7 @@ public class LunkaController : MonoBehaviour
         if (IsFish)
         {
             Debug.Log("Я поймал рыбу");
-            _dno.GiveFish();
+            DnoScropt.instance.GiveFish(); //синглтон
             IsFish = false;
         }
         _cancellationTokenSource.Cancel();

@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System.Threading;
-using UnityEngine.InputSystem.XR;
 
 public class Udochka : MonoBehaviour
 {
@@ -47,7 +44,6 @@ public class Udochka : MonoBehaviour
 
             await UniTask.Yield();
         }
-        
     }
 
     private void OnApplicationQuit()

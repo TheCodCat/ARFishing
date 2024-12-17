@@ -1,16 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DnoScropt : MonoBehaviour
 {
-    [SerializeField] private int _currentCount;
-    [SerializeField] private int _WinerCount;
-    [SerializeField] private ParticleSystem _particleSystem;
+    public static DnoScropt instance;
+    [SerializeField] private int _currentCount; //текущее количество рыб
+    [SerializeField] private int _WinerCount; //победное количество рыб
+    [SerializeField] private ParticleSystem _particleSystem; //эффект победы
 
-    [SerializeField] private Transform _point;
-    [SerializeField] private GameObject[] _fishs;
-    private GameObject _currentFish;
+    [SerializeField] private Transform _point; //место падения рыбы
+    [SerializeField] private GameObject[] _fishs; //варианты рыбы
+    private GameObject _currentFish; //текущая пойманная рыба
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,6 +29,10 @@ public class DnoScropt : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Добавляет рыбу на место сброса
+    /// </summary>
     public void GiveFish()
     {
         _currentFish = Instantiate(_fishs[Random.Range(0, _fishs.Length - 1)], _point.position, Quaternion.identity);
